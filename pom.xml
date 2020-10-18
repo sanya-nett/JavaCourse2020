@@ -26,6 +26,7 @@
                     <systemPropertyVariables>
                         <!-- Fix error: No log4j2 configuration file found -->
                         <log4j.configurationFile>log4j.xml</log4j.configurationFile>
+                        <browser>Chrome</browser>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
