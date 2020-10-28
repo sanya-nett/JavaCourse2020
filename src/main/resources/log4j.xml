@@ -1,7 +1,8 @@
 <Configuration monitorInterval="30">
     <Appenders>
         <Console name="ConsoleHandler" target="SYSTEM_OUT">
-            <PatternLayout pattern="%highlight{%d{dd/MM/yyyy HH:mm:ss.SSS} - %-4p - %-12.15c{1} | %m%n}{FATAL=red blink, ERROR=red blink, WARN=yellow bold, INFO=black, DEBUG=green bold, TRACE=blue}"/>
+            <PatternLayout
+                    pattern="%highlight{%d{dd/MM/yyyy HH:mm:ss.SSS} - %-5p - %-12.15c{1} | %m%n}{FATAL=red blink, ERROR=red blink, WARN=yellow bold, INFO=black, DEBUG=green bold, TRACE=blue}"/>
         </Console>
         <File name="FileHandler" fileName="logs.log">
             <PatternLayout>
@@ -10,7 +11,7 @@
         </File>
     </Appenders>
     <Loggers>
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="ConsoleHandler"/>
             <AppenderRef ref="FileHandler"/>
         </Root>
