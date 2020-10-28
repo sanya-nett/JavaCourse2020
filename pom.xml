@@ -69,6 +69,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <log4j.configurationFile>log4j.xml</log4j.configurationFile>
+                        <browser>Chrome</browser>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
