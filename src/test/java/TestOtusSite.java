@@ -11,17 +11,17 @@ public class TestOtusSite {
     private final Logger logger = LogManager.getLogger(TestOtusSite.class);
 
     @BeforeAll
-    public static void setupClass() {
+    public static void setUpSuite() {
         WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
-    public void setupTest() {
+    public void setUp() {
         driver = new ChromeDriver();
     }
 
     @AfterEach
-    public void teardown() {
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
@@ -29,10 +29,10 @@ public class TestOtusSite {
 
     @Test
     public void checkSiteTitle() {
-        logger.info("Open \"OTUS\" main page");
+        logger.info("Open 'OTUS' main page");
         driver.get("https://otus.ru/");
         String expectedTitle = "Онлайн‑курсы для профессионалов, дистанционное обучение современным профессиям";
-        logger.info(String.format("Check that page title is equal to \"%s\"", expectedTitle));
+        logger.info(String.format("Check that page title is equal to '%s'", expectedTitle));
         Assertions.assertEquals(expectedTitle, driver.getTitle());
     }
 }
