@@ -1,8 +1,7 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -11,18 +10,18 @@ public class TestOtusSite {
     protected WebDriver driver;
     private final Logger logger = LogManager.getLogger(TestOtusSite.class);
 
-    @BeforeClass
-    public static void setupClass() {
+    @BeforeAll
+    public static void setUpSuite() {
         WebDriverManager.chromedriver().setup();
     }
 
-    @Before
-    public void setupTest() {
+    @BeforeEach
+    public void setUp() {
         driver = new ChromeDriver();
     }
 
-    @After
-    public void teardown() {
+    @AfterEach
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
@@ -30,10 +29,10 @@ public class TestOtusSite {
 
     @Test
     public void checkSiteTitle() {
-        logger.info("Open \"OTUS\" main page");
+        logger.info("Open 'OTUS' main page");
         driver.get("https://otus.ru/");
         String expectedTitle = "Онлайн‑курсы для профессионалов, дистанционное обучение современным профессиям";
-        logger.info(String.format("Check that page title is equal to \"%s\"", expectedTitle));
-        Assert.assertEquals(expectedTitle, driver.getTitle());
+        logger.info(String.format("Check that page title is equal to '%s'", expectedTitle));
+        Assertions.assertEquals(expectedTitle, driver.getTitle());
     }
 }
