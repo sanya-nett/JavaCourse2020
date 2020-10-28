@@ -11,9 +11,9 @@
         </File>
     </Appenders>
     <Loggers>
-        <Root level="debug">
-            <AppenderRef ref="ConsoleHandler"/>
-            <AppenderRef ref="FileHandler"/>
+        <Root level="DEBUG">
+            <AppenderRef ref="ConsoleHandler" level="INFO"/>
+            <AppenderRef ref="FileHandler" level="DEBUG"/>
         </Root>
     </Loggers>
 </Configuration>
