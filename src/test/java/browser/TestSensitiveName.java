@@ -1,40 +1,26 @@
 package browser;
 
 import enums.Browser;
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriver;
 
-import java.util.Arrays;
-import java.util.Collection;
-
-@RunWith(Parameterized.class)
 public class TestSensitiveName {
 
     protected WebDriver driver;
-    private final String browserName;
 
-    public TestSensitiveName(String browserName) {
-        this.browserName = browserName;
-    }
-
-    @Parameterized.Parameters
-    public static Collection<String> browser() {
-        return Arrays.asList("chRome", "chrome", "CHROME", "Firefox");
-    }
-
-    @Test
-    public void checkBrowserSensitiveName() {
+    @ParameterizedTest
+    @ValueSource(strings = {"chRome", "chrome", "CHROME", "Firefox"})
+    public void checkBrowserSensitiveName(String browserName) {
         Browser browser = Browser.getBrowser(browserName);
         browser.installDriver();
         driver = browser.create();
         driver.get("https://otus.ru/");
     }
 
-    @After
-    public void teardown() {
+    @AfterEach
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }

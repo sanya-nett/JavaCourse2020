@@ -1,9 +1,9 @@
 package browser;
 
 import enums.Browser;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -13,7 +13,7 @@ public class TestCommonName {
 
     private void checkGoogleTitle() {
         driver.get("https://www.google.com/");
-        Assert.assertEquals("Google", driver.getTitle());
+        Assertions.assertEquals("Google", driver.getTitle());
     }
 
     @Test
@@ -35,13 +35,13 @@ public class TestCommonName {
         checkGoogleTitle();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void checkBrowserNotFound() {
-        Browser browser = Browser.getBrowser("Edge");
+        Assertions.assertThrows(IllegalArgumentException.class, () -> Browser.getBrowser("Edge"));
     }
 
-    @After
-    public void teardown() {
+    @AfterEach
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
