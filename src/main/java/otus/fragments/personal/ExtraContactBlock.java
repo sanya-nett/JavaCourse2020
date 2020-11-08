@@ -31,7 +31,7 @@ public class ExtraContactBlock extends AbstractFragment {
      * @return List of additional contacts (without email/phone number)
      */
     public List<ExtraContactBlockItem> getContactInfoList() {
-        logger.info("Получить список всех контактов");
+        logger.debug("Получить список всех контактов");
         return element.findElements(CONTACT_INFO_ITEM)
                 .stream()
                 .map(ExtraContactBlockItem::new)
