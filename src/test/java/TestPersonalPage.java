@@ -7,8 +7,8 @@ import otus.pages.PersonalPage;
 
 public class TestPersonalPage extends TestBase {
 
-    private final String USER_EMAIL = "rahog66236@abbuzz.com";
-    private final String USER_PASSWORD = "qaz123qaz";
+    private final String USER_EMAIL = System.getProperty("login", "rahog66236@abbuzz.com");
+    private final String USER_PASSWORD = System.getProperty("password", "qaz123qaz");
 
     @BeforeEach
     private void setUp() {
