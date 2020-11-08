@@ -42,7 +42,7 @@ public class ExtraContactBlockItem extends AbstractFragment {
      * @return Current contact type
      */
     public ContactType getContactType() {
-        logger.info("Получить установленный способ связи для контакта");
+        logger.debug("Получить установленный способ связи для контакта");
         String contactValue = element.findElement(CONTACT_TYPE_INPUT).getAttribute("value");
         return ContactType.getTypeByValue(contactValue);
     }
@@ -51,7 +51,7 @@ public class ExtraContactBlockItem extends AbstractFragment {
      * @return Current contact data from text field
      */
     public String getContactTextData() {
-        logger.info("Получить установленное значение для контакта");
+        logger.debug("Получить установленное значение для контакта");
         return element.findElement(TEXT_FIELD).getAttribute("value");
     }
 
