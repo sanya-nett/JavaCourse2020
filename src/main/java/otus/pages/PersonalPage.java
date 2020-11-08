@@ -101,7 +101,7 @@ public class PersonalPage extends AbstractPage {
      * @return User's name in native language
      */
     public String getName() {
-        logger.info("Получить имя пользователя на русском языке");
+        logger.debug("Получить имя пользователя на русском языке");
         return getFieldText(nameField);
     }
 
@@ -109,7 +109,7 @@ public class PersonalPage extends AbstractPage {
      * @return User's name in latin language
      */
     public String getLatinName() {
-        logger.info("Получить имя пользователя латиницей");
+        logger.debug("Получить имя пользователя латиницей");
         return getFieldText(nameLatinField);
     }
 
@@ -117,7 +117,7 @@ public class PersonalPage extends AbstractPage {
      * @return User's surname in native language
      */
     public String getSurname() {
-        logger.info("Получить фамилию пользователя на русском языке");
+        logger.debug("Получить фамилию пользователя на русском языке");
         return getFieldText(surnameField);
     }
 
@@ -125,7 +125,7 @@ public class PersonalPage extends AbstractPage {
      * @return User's surname in latin language
      */
     public String getLatinSurname() {
-        logger.info("Получить фамилию пользователя латиницей");
+        logger.debug("Получить фамилию пользователя латиницей");
         return getFieldText(surnameLatinField);
     }
 
@@ -133,7 +133,7 @@ public class PersonalPage extends AbstractPage {
      * @return User's blog name
      */
     public String getBlogName() {
-        logger.info("Получить имя в блоге");
+        logger.debug("Получить имя в блоге");
         return getFieldText(blogNameField);
     }
 
@@ -141,7 +141,7 @@ public class PersonalPage extends AbstractPage {
      * @return User's birth date
      */
     public String getBirthDate() {
-        logger.info("Получить дату рождения");
+        logger.debug("Получить дату рождения");
         return getFieldText(birthDatePicker);
     }
 
@@ -149,7 +149,7 @@ public class PersonalPage extends AbstractPage {
      * @return User's country
      */
     public String getCountry() {
-        logger.info("Получить страну");
+        logger.debug("Получить страну");
         return countryField.getText();
     }
 
@@ -157,7 +157,7 @@ public class PersonalPage extends AbstractPage {
      * @return User's city
      */
     public String getCity() {
-        logger.info("Получить город");
+        logger.debug("Получить город");
         return cityField.getText();
     }
 
@@ -165,7 +165,7 @@ public class PersonalPage extends AbstractPage {
      * @return User's language level
      */
     public String getLanguageLevel() {
-        logger.info("Получить уровень английского");
+        logger.debug("Получить уровень английского");
         return languageLevelField.getText();
     }
 
@@ -281,7 +281,7 @@ public class PersonalPage extends AbstractPage {
      * @return All additional contacts
      */
     public HashMap<ContactType, String> getExtraContacts() {
-        logger.info("Получить все дополнительные контакты");
+        logger.debug("Получить все дополнительные контакты");
         HashMap<ContactType, String> actualContactData = new HashMap<>();
         for (ExtraContactBlockItem contactBlockItem : getExtraContactBlock().getContactInfoList()) {
             actualContactData.put(
