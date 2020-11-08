@@ -1,13 +1,15 @@
 package otus.pages;
 
 import com.google.common.collect.Iterables;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import otus.enums.ContactType;
-import otus.fragments.personal.AdditionalContactBlock;
-import otus.fragments.personal.AdditionalContactBlockItem;
+import otus.fragments.personal.ExtraContactBlock;
+import otus.fragments.personal.ExtraContactBlockItem;
+
+import java.util.HashMap;
 
 /**
  * This class describe interface of personal page
@@ -34,7 +36,8 @@ public class PersonalPage extends AbstractPage {
     private WebElement birthDatePicker;
 
     // Contact data
-    private final static By ADDITIONAL_CONTACT_INFO_BLOCK = By.cssSelector("div[data-prefix=contact]");
+    @FindBy(css = "div[data-prefix=contact]")
+    private WebElement extraContactBlock;
 
     // Action buttons
     @FindBy(css = ".lk-cv-action-buttons > button[name=continue]")
@@ -171,10 +174,29 @@ public class PersonalPage extends AbstractPage {
     /**
      * @return Block of additional contacts
      */
-    public AdditionalContactBlock getAdditionalContactBlock() {
-        return new AdditionalContactBlock(
-                wait.until(ExpectedConditions.visibilityOfElementLocated(ADDITIONAL_CONTACT_INFO_BLOCK))
-        );
+    private ExtraContactBlock getExtraContactBlock() {
+        return new ExtraContactBlock(wait.until(ExpectedConditions.visibilityOf(extraContactBlock)));
+    }
+
+    /**
+     * Clean all additional contact data
+     */
+    public void cleanExtraContacts() {
+        logger.info("Очистить все дополнительные контакты");
+        getExtraContactBlock().getContactInfoList().forEach(ExtraContactBlockItem::clickOnDelete);
+    }
+
+    public HashMap<ContactType, String> getExtraContacts() {
+        logger.info("Получить все дополнительные контакты");
+        HashMap<ContactType, String> actualContactData = new HashMap<>();
+        for (ExtraContactBlockItem contactBlockItem : getExtraContactBlock().getContactInfoList()) {
+            actualContactData.put(
+                    contactBlockItem.getContactType(),
+                    contactBlockItem.getContactTextData()
+            );
+        }
+        ;
+        return actualContactData;
     }
 
     /**
@@ -183,12 +205,13 @@ public class PersonalPage extends AbstractPage {
      * @param contactType Contact type
      * @param contactData Contact text data
      */
-    public void addNewContactData(ContactType contactType, String contactData) {
+    public void addNewExtraContact(ContactType contactType, String contactData) {
         logger.info("Добавить новые контактные данные");
-        AdditionalContactBlock contactBlock = getAdditionalContactBlock();
+        ExtraContactBlock contactBlock = getExtraContactBlock();
         contactBlock.clickOnAddContactInfo();
+
         logger.debug("Найти последнее контактное поле");
-        AdditionalContactBlockItem lastContactBlockItem = Iterables.getLast(contactBlock.getContactInfoList());
+        ExtraContactBlockItem lastContactBlockItem = Iterables.getLast(contactBlock.getContactInfoList());
         lastContactBlockItem.setContactData(contactType, contactData);
     }
 
