@@ -10,6 +10,8 @@ import otus.fragments.personal.ExtraContactBlock;
 import otus.fragments.personal.ExtraContactBlockItem;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * This class describe interface of personal page
@@ -34,6 +36,25 @@ public class PersonalPage extends AbstractPage {
 
     @FindBy(css = "input[name=date_of_birth]")
     private WebElement birthDatePicker;
+
+    // Main information
+    @FindBy(xpath = "//input[@name='country']/../div")
+    private WebElement countryField;
+
+    @FindBy(xpath = "//input[@name='country']/../..//div[contains(@class, 'lk-cv-block__select-scroll')]/button")
+    private List<WebElement> countryList;
+
+    @FindBy(xpath = "//input[@name='city']/../div")
+    private WebElement cityField;
+
+    @FindBy(xpath = "//input[@name='city']/../..//div[contains(@class, 'lk-cv-block__select-scroll')]/button")
+    private List<WebElement> cityList;
+
+    @FindBy(xpath = "//input[@name='english_level']/../div")
+    private WebElement languageLevelField;
+
+    @FindBy(xpath = "//input[@name='english_level']/../..//div[contains(@class, 'lk-cv-block__select-scroll')]/button")
+    private List<WebElement> languageLevelList;
 
     // Contact data
     @FindBy(css = "div[data-prefix=contact]")
@@ -61,6 +82,19 @@ public class PersonalPage extends AbstractPage {
     private String getFieldText(WebElement element) {
         logger.debug("Взять у элемента текст");
         return wait.until(ExpectedConditions.visibilityOf(element)).getAttribute("value");
+    }
+
+    // Create custom class for work helpers with elements
+    private void setDivSelector(List<WebElement> elements, String expectedValue) {
+        try {
+            wait.until(ExpectedConditions.visibilityOfAllElements(elements))
+                    .stream()
+                    .filter(element -> element.getText().equalsIgnoreCase(expectedValue))
+                    .findFirst().get().click();
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException(String.format("Not found list element with value: %s", expectedValue));
+        }
+
     }
 
     /**
@@ -109,6 +143,30 @@ public class PersonalPage extends AbstractPage {
     public String getBirthDate() {
         logger.info("Получить дату рождения");
         return getFieldText(birthDatePicker);
+    }
+
+    /**
+     * @return User's country
+     */
+    public String getCountry() {
+        logger.info("Получить страну");
+        return countryField.getText();
+    }
+
+    /**
+     * @return User's city
+     */
+    public String getCity() {
+        logger.info("Получить город");
+        return cityField.getText();
+    }
+
+    /**
+     * @return User's language level
+     */
+    public String getLanguageLevel() {
+        logger.info("Получить уровень английского");
+        return languageLevelField.getText();
     }
 
     /**
@@ -169,6 +227,39 @@ public class PersonalPage extends AbstractPage {
     public void setBirthDate(String birthDate) {
         logger.info(String.format("Заполнить дату рождения: %s", birthDate));
         cleanFieldAndSetText(birthDatePicker, birthDate);
+    }
+
+    /**
+     * Set user's country
+     *
+     * @param country Expected value for user's country
+     */
+    public void setCountry(String country) {
+        logger.info(String.format("Заполнить страну: %s", country));
+        countryField.click();
+        setDivSelector(countryList, country);
+    }
+
+    /**
+     * Set user's city
+     *
+     * @param city Expected value for user's city
+     */
+    public void setCity(String city) {
+        logger.info(String.format("Заполнить город: %s", city));
+        cityField.click();
+        setDivSelector(cityList, city);
+    }
+
+    /**
+     * Set user's language level
+     *
+     * @param languageLevel Expected value for user's language level
+     */
+    public void setLanguageLevel(String languageLevel) {
+        logger.info(String.format("Заполнить уровень английского: %s", languageLevel));
+        languageLevelField.click();
+        setDivSelector(languageLevelList, languageLevel);
     }
 
     /**
