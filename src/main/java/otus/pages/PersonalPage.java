@@ -236,7 +236,7 @@ public class PersonalPage extends AbstractPage {
      */
     public void setCountry(String country) {
         logger.info(String.format("Заполнить страну: %s", country));
-        countryField.click();
+        wait.until(ExpectedConditions.visibilityOf(countryField)).click();
         setDivSelector(countryList, country);
     }
 
@@ -247,7 +247,7 @@ public class PersonalPage extends AbstractPage {
      */
     public void setCity(String city) {
         logger.info(String.format("Заполнить город: %s", city));
-        cityField.click();
+        wait.until(ExpectedConditions.visibilityOf(cityField)).click();
         setDivSelector(cityList, city);
     }
 
@@ -258,7 +258,7 @@ public class PersonalPage extends AbstractPage {
      */
     public void setLanguageLevel(String languageLevel) {
         logger.info(String.format("Заполнить уровень английского: %s", languageLevel));
-        languageLevelField.click();
+        wait.until(ExpectedConditions.visibilityOf(languageLevelField)).click();
         setDivSelector(languageLevelList, languageLevel);
     }
 
