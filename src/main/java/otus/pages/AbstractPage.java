@@ -5,19 +5,21 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * This class describe common functional for all pages
  */
-public abstract class BasePage {
+public abstract class AbstractPage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Logger logger = LogManager.getLogger(this.getClass());
 
-    public BasePage(WebDriver driver) {
+    public AbstractPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, 3);
     }
 

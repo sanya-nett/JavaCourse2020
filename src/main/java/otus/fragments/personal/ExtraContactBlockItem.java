@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * This class describe interface of each additional contact data on personal page
  */
-public class AdditionalContactBlockItem extends AbstractFragment {
+public class ExtraContactBlockItem extends AbstractFragment {
 
     private final static By CONTACT_TYPE_DROP_DOWN = By.cssSelector("span.placeholder");
     private final static By CONTACT_TYPE_INPUT = By.cssSelector("input.js-custom-select-input");
@@ -18,7 +18,7 @@ public class AdditionalContactBlockItem extends AbstractFragment {
     private final static By TEXT_FIELD = By.cssSelector("input[type='text']");
     private final static By DELETE_BUTTON = By.cssSelector(".container__col_md-0 button.js-formset-delete");
 
-    public AdditionalContactBlockItem(WebElement element) {
+    public ExtraContactBlockItem(WebElement element) {
         super(element);
     }
 
@@ -42,7 +42,7 @@ public class AdditionalContactBlockItem extends AbstractFragment {
      * @return Current contact type
      */
     public ContactType getContactType() {
-        logger.info("Получить установленный способ связи для контакта");
+        logger.debug("Получить установленный способ связи для контакта");
         String contactValue = element.findElement(CONTACT_TYPE_INPUT).getAttribute("value");
         return ContactType.getTypeByValue(contactValue);
     }
@@ -51,7 +51,7 @@ public class AdditionalContactBlockItem extends AbstractFragment {
      * @return Current contact data from text field
      */
     public String getContactTextData() {
-        logger.info("Получить установленное значение для контакта");
+        logger.debug("Получить установленное значение для контакта");
         return element.findElement(TEXT_FIELD).getAttribute("value");
     }
 
