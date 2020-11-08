@@ -277,6 +277,9 @@ public class PersonalPage extends AbstractPage {
         getExtraContactBlock().getContactInfoList().forEach(ExtraContactBlockItem::clickOnDelete);
     }
 
+    /**
+     * @return All additional contacts
+     */
     public HashMap<ContactType, String> getExtraContacts() {
         logger.info("Получить все дополнительные контакты");
         HashMap<ContactType, String> actualContactData = new HashMap<>();
