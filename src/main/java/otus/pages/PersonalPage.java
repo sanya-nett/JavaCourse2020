@@ -1,6 +1,7 @@
 package otus.pages;
 
 import com.google.common.collect.Iterables;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -247,7 +248,9 @@ public class PersonalPage extends AbstractPage {
      */
     public void setCity(String city) {
         logger.info(String.format("Заполнить город: %s", city));
-        wait.until(ExpectedConditions.visibilityOf(cityField)).click();
+        // Need to load city list before click
+        wait.until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(cityField, By.cssSelector("span")));
+        cityField.click();
         setDivSelector(cityList, city);
     }
 
@@ -289,7 +292,6 @@ public class PersonalPage extends AbstractPage {
                     contactBlockItem.getContactTextData()
             );
         }
-        ;
         return actualContactData;
     }
 
