@@ -12,7 +12,7 @@ public class TestPersonalPage extends TestBase {
 
     @BeforeEach
     private void setUp() {
-        logger.info("Запуск браузера");
+        logger.debug("Запуск браузера");
         driver = new ChromeDriver();
     }
 
@@ -32,7 +32,7 @@ public class TestPersonalPage extends TestBase {
     @AfterEach
     private void tearDown() {
         if (driver != null) {
-            logger.info("Закрытие браузера");
+            logger.debug("Закрытие браузера");
             driver.quit();
         }
     }
