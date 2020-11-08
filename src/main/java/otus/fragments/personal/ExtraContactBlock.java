@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 /**
  * This class describe interface of the additional contacts data on personal page
  */
-public class AdditionalContactBlock extends AbstractFragment {
+public class ExtraContactBlock extends AbstractFragment {
 
     private final static By ADD_BUTTON = By.cssSelector("button.js-formset-add");
     private final static By CONTACT_INFO_ITEM = By.cssSelector(".js-formset-row:not(.hide)");
 
-    public AdditionalContactBlock(WebElement element) {
+    public ExtraContactBlock(WebElement element) {
         super(element);
     }
 
@@ -30,19 +30,12 @@ public class AdditionalContactBlock extends AbstractFragment {
     /**
      * @return List of additional contacts (without email/phone number)
      */
-    public List<AdditionalContactBlockItem> getContactInfoList() {
+    public List<ExtraContactBlockItem> getContactInfoList() {
         logger.info("Получить список всех контактов");
         return element.findElements(CONTACT_INFO_ITEM)
                 .stream()
-                .map(AdditionalContactBlockItem::new)
+                .map(ExtraContactBlockItem::new)
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Remove all additional contacts
-     */
-    public void deleteAllContacts() {
-        logger.info("Удалить все возможные контакты");
-        getContactInfoList().forEach(AdditionalContactBlockItem::clickOnDelete);
-    }
 }
