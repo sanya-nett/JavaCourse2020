@@ -48,7 +48,6 @@
             <artifactId>log4j-core</artifactId>
             <version>${logging.log4j}</version>
         </dependency>
-
     </dependencies>
 
     <build>
