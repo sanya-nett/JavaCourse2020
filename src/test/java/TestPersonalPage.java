@@ -1,5 +1,7 @@
 import com.google.common.collect.Maps;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import otus.data.User;
 import otus.pages.MainSignPage;
 import otus.pages.PersonalPage;
@@ -9,25 +11,11 @@ public class TestPersonalPage extends TestBase {
     private final String USER_EMAIL = System.getProperty("login", "rahog66236@abbuzz.com");
     private final String USER_PASSWORD = System.getProperty("password", "qaz123qaz");
 
-    @BeforeEach
-    private void setUp() {
-        logger.debug("Запуск браузера");
-        driver = defaultBrowser.create();
-    }
-
     private PersonalPage authAndMoveToPersonalPage() {
         MainSignPage mainSignPage = new MainSignPage(driver);
         mainSignPage.openPage();
         mainSignPage.authorization(USER_EMAIL, USER_PASSWORD);
         return mainSignPage.openPersonalPage();
-    }
-
-    @AfterEach
-    private void tearDown() {
-        if (driver != null) {
-            logger.debug("Закрытие браузера");
-            driver.quit();
-        }
     }
 
     @Test
