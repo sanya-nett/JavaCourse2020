@@ -16,4 +16,10 @@ public abstract class TestBase {
         defaultBrowser.installDriver();
     }
 
+    public void restartBrowser() {
+        logger.info("Перезапустить браузер");
+        driver.quit();
+        driver = defaultBrowser.create();
+    }
+
 }

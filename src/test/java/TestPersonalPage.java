@@ -22,12 +22,6 @@ public class TestPersonalPage extends TestBase {
         return mainSignPage.openPersonalPage();
     }
 
-    private void restartBrowser() {
-        logger.info("Перезапустить браузер");
-        driver.quit();
-        driver = defaultBrowser.create();
-    }
-
     @AfterEach
     private void tearDown() {
         if (driver != null) {
