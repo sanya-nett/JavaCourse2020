@@ -1,4 +1,4 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
+import enums.Browser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,7 +11,7 @@ public abstract class TestBase {
 
     @BeforeAll
     public static void setUpSuite() {
-        WebDriverManager.chromedriver().setup();
+        Browser.getDefaultBrowser().installDriver();
     }
 
 }

@@ -1,6 +1,6 @@
 import com.google.common.collect.Maps;
+import enums.Browser;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import otus.data.User;
 import otus.pages.MainSignPage;
 import otus.pages.PersonalPage;
@@ -13,7 +13,7 @@ public class TestPersonalPage extends TestBase {
     @BeforeEach
     private void setUp() {
         logger.debug("Запуск браузера");
-        driver = new ChromeDriver();
+        driver = Browser.getDefaultBrowser().create();
     }
 
     private PersonalPage authAndMoveToPersonalPage() {
@@ -26,7 +26,7 @@ public class TestPersonalPage extends TestBase {
     private void restartBrowser() {
         logger.info("Перезапустить браузер");
         driver.quit();
-        driver = new ChromeDriver();
+        driver = Browser.getDefaultBrowser().create();
     }
 
     @AfterEach
