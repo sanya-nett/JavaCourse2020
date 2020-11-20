@@ -1,5 +1,4 @@
 import com.google.common.collect.Maps;
-import enums.Browser;
 import org.junit.jupiter.api.*;
 import otus.data.User;
 import otus.pages.MainSignPage;
@@ -13,7 +12,7 @@ public class TestPersonalPage extends TestBase {
     @BeforeEach
     private void setUp() {
         logger.debug("Запуск браузера");
-        driver = Browser.getDefaultBrowser().create();
+        driver = defaultBrowser.create();
     }
 
     private PersonalPage authAndMoveToPersonalPage() {
@@ -26,7 +25,7 @@ public class TestPersonalPage extends TestBase {
     private void restartBrowser() {
         logger.info("Перезапустить браузер");
         driver.quit();
-        driver = Browser.getDefaultBrowser().create();
+        driver = defaultBrowser.create();
     }
 
     @AfterEach

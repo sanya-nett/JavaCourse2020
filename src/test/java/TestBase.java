@@ -6,12 +6,14 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class TestBase {
 
+    protected static Browser defaultBrowser = Browser.getDefaultBrowser();
+
     protected WebDriver driver;
     protected Logger logger = LogManager.getLogger(this.getClass());
 
     @BeforeAll
     public static void setUpSuite() {
-        Browser.getDefaultBrowser().installDriver();
+        defaultBrowser.installDriver();
     }
 
 }
