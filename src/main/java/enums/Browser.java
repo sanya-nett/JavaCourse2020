@@ -23,6 +23,10 @@ public enum Browser {
         throw new IllegalArgumentException(String.format("No found enum for browser name: %s", browserName));
     }
 
+    public static Browser getDefaultBrowser() {
+        return Browser.getBrowser(System.getProperty("browser"));
+    }
+
     public void installDriver() {
         DriverManagerType managerType = DriverManagerType.valueOf(this.name());
         WebDriverManager.getInstance(managerType).setup();
